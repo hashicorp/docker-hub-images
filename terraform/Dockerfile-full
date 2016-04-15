@@ -7,6 +7,9 @@ RUN go get github.com/hashicorp/terraform
 
 WORKDIR $GOPATH/src/github.com/hashicorp/terraform
 
+# Temporary fix for missing commit from github.com/joyent/gosdc/cloudapi
+RUN go get github.com/joyent/gosdc/cloudapi
+
 RUN godep restore .../.
 
 RUN /bin/bash scripts/build.sh
