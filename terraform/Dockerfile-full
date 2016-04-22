@@ -7,7 +7,7 @@ RUN go get github.com/hashicorp/terraform
 
 WORKDIR $GOPATH/src/github.com/hashicorp/terraform
 
-RUN godep restore .../.
+RUN godep restore -v .../.
 
 ENV TF_DEV=true
 
