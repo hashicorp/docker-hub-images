@@ -1,0 +1,16 @@
+FROM golang:alpine
+MAINTAINER "Tim Fall <tim@hashicorp.com>"
+
+RUN apk add --update git bash zip
+RUN go get github.com/mitchellh/gox
+RUN go get github.com/tools/godep
+RUN go get github.com/hashicorp/consul
+
+WORKDIR $GOPATH/src/github.com/hashicorp/consul
+
+RUN godep restore -v .../.
+
+RUN /bin/bash scripts/build.sh
+
+WORKDIR $GOPATH
+ENTRYPOINT ["bin/consul"]
