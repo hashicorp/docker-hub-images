@@ -11,7 +11,7 @@ ADD https://releases.hashicorp.com/packer/${PACKER_VERSION}/packer_${PACKER_VERS
 
 RUN sed -i '/packer_${PACKER_VERSION}_linux_amd64.zip/!d' packer_${PACKER_VERSION}_SHA256SUMS
 RUN sha256sum -cs packer_${PACKER_VERSION}_SHA256SUMS
-RUN unzip packer_${PACKER_VERSION}_linux_amd64.zip
+RUN unzip packer_${PACKER_VERSION}_linux_amd64.zip -d /bin
 RUN rm -f packer_${PACKER_VERSION}_linux_amd64.zip
 
-ENTRYPOINT ["/packer"]
+ENTRYPOINT ["/bin/packer"]
