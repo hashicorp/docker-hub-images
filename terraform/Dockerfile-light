@@ -11,7 +11,7 @@ ADD https://releases.hashicorp.com/terraform/${TERRAFORM_VERSION}/terraform_${TE
 
 RUN sed -i '/terraform_${TERRAFORM_VERSION}_linux_amd64.zip/!d' terraform_${TERRAFORM_VERSION}_SHA256SUMS
 RUN sha256sum -cs terraform_${TERRAFORM_VERSION}_SHA256SUMS
-RUN unzip terraform_${TERRAFORM_VERSION}_linux_amd64.zip
+RUN unzip terraform_${TERRAFORM_VERSION}_linux_amd64.zip -d /bin
 RUN rm -f terraform_${TERRAFORM_VERSION}_linux_amd64.zip
 
-ENTRYPOINT ["/terraform"]
+ENTRYPOINT ["/bin/terraform"]
