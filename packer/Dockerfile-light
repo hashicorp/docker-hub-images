@@ -4,14 +4,19 @@ MAINTAINER "Tim Fall <tim@hashicorp.com>"
 ENV PACKER_VERSION=0.10.1
 ENV PACKER_SHA256SUM=eadd33bc0f8fa42034059fc1cda5f43ed6f540746e767480f0706ebed49b45e5
 
-RUN apk add --update git bash wget
+# Add install dependencies and retrieve files
+RUN apk add --no-cache --virtual install-dependencies \
+            curl \
+&&  curl -LO --silent https://releases.hashicorp.com/packer/${PACKER_VERSION}/packer_${PACKER_VERSION}_linux_amd64.zip \
+&&  curl -LO --silent https://releases.hashicorp.com/packer/${PACKER_VERSION}/packer_${PACKER_VERSION}_SHA256SUMS \
 
-ADD https://releases.hashicorp.com/packer/${PACKER_VERSION}/packer_${PACKER_VERSION}_linux_amd64.zip ./
-ADD https://releases.hashicorp.com/packer/${PACKER_VERSION}/packer_${PACKER_VERSION}_SHA256SUMS ./
+# Check & Install
+&&  sed -i '/packer_${PACKER_VERSION}_linux_amd64.zip/!d' packer_${PACKER_VERSION}_SHA256SUMS \
+&&  sha256sum -cs packer_${PACKER_VERSION}_SHA256SUMS \
+&&  unzip packer_${PACKER_VERSION}_linux_amd64.zip -d /bin \
 
-RUN sed -i '/packer_${PACKER_VERSION}_linux_amd64.zip/!d' packer_${PACKER_VERSION}_SHA256SUMS
-RUN sha256sum -cs packer_${PACKER_VERSION}_SHA256SUMS
-RUN unzip packer_${PACKER_VERSION}_linux_amd64.zip -d /bin
-RUN rm -f packer_${PACKER_VERSION}_linux_amd64.zip
+# Post-install Clean
+&&  rm -f packer_${PACKER_VERSION}_* \
+&&  apk del install-dependencies
 
 ENTRYPOINT ["/bin/packer"]
