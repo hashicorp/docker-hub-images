@@ -4,14 +4,19 @@ MAINTAINER "Tim Fall <tim@hashicorp.com>"
 ENV TERRAFORM_VERSION=0.6.16
 ENV TERRAFORM_SHA256SUM=e10987bca7ec15301bc2fd152795d51cfc9fdbe6c70c9708e6e2ed81eaa1f082
 
-RUN apk add --update git bash wget
+# Add install dependencies and retrieve files
+RUN apk add --no-cache --virtual install-dependencies \
+            curl \
+&&  curl -LO --silent https://releases.hashicorp.com/terraform/${TERRAFORM_VERSION}/terraform_${TERRAFORM_VERSION}_linux_amd64.zip \
+&&  curl -LO --silent https://releases.hashicorp.com/terraform/${TERRAFORM_VERSION}/terraform_${TERRAFORM_VERSION}_SHA256SUMS \
 
-ADD https://releases.hashicorp.com/terraform/${TERRAFORM_VERSION}/terraform_${TERRAFORM_VERSION}_linux_amd64.zip ./
-ADD https://releases.hashicorp.com/terraform/${TERRAFORM_VERSION}/terraform_${TERRAFORM_VERSION}_SHA256SUMS ./
+# Check & Install
+&&  sed -i '/terraform_${TERRAFORM_VERSION}_linux_amd64.zip/!d' terraform_${TERRAFORM_VERSION}_SHA256SUMS \
+&&  sha256sum -cs terraform_${TERRAFORM_VERSION}_SHA256SUMS \
+&&  unzip terraform_${TERRAFORM_VERSION}_linux_amd64.zip -d /bin \
 
-RUN sed -i '/terraform_${TERRAFORM_VERSION}_linux_amd64.zip/!d' terraform_${TERRAFORM_VERSION}_SHA256SUMS
-RUN sha256sum -cs terraform_${TERRAFORM_VERSION}_SHA256SUMS
-RUN unzip terraform_${TERRAFORM_VERSION}_linux_amd64.zip -d /bin
-RUN rm -f terraform_${TERRAFORM_VERSION}_linux_amd64.zip
+# Post-install Clean
+&&  rm -f terraform_${TERRAFORM_VERSION}_* \
+&&  apk del install-dependencies
 
 ENTRYPOINT ["/bin/terraform"]
