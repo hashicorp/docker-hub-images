@@ -1,5 +1,5 @@
 FROM golang:alpine
-MAINTAINER "Paul Hinze <paul@hashicorp.com>"
+MAINTAINER "HashiCorp Terraform Team <terraform@hashicorp.com>"
 
 RUN apk add --update git bash
 RUN go get github.com/tools/godep

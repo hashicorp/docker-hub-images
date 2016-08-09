@@ -1,2 +1,2 @@
 FROM golang:onbuild
-MAINTAINER "Paul Hinze <paul@hashicorp.com>"
+MAINTAINER "HashiCorp Terraform Team <terraform@hashicorp.com>"

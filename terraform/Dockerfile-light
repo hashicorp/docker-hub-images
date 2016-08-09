@@ -1,5 +1,5 @@
 FROM alpine:latest
-MAINTAINER "Paul Hinze <paul@hashicorp.com>"
+MAINTAINER "HashiCorp Terraform Team <terraform@hashicorp.com>"
 
 ENV TERRAFORM_VERSION=0.7.0
 ENV TERRAFORM_SHA256SUM=a196c63b967967343f3ae9bb18ce324a18b27690e2d105e1f38c5a2d7c02038d
