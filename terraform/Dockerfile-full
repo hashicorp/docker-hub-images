@@ -7,13 +7,10 @@ RUN apk add --update git bash
 
 ENV TF_DEV=true
 
-RUN mkdir -p $GOPATH/src/github.com/hashicorp
-WORKDIR $GOPATH/src/github.com/hashicorp
-RUN git clone https://github.com/hashicorp/terraform.git
-
 WORKDIR $GOPATH/src/github.com/hashicorp/terraform
-RUN git checkout v${TERRAFORM_VERSION}
-RUN /bin/bash scripts/build.sh
+RUN git clone https://github.com/hashicorp/terraform.git ./ && \
+    git checkout v${TERRAFORM_VERSION} && \
+    /bin/bash scripts/build.sh
 
 WORKDIR $GOPATH
 ENTRYPOINT ["bin/terraform"]
