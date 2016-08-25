@@ -1,17 +1,16 @@
 FROM golang:alpine
 MAINTAINER "HashiCorp Terraform Team <terraform@hashicorp.com>"
 
+ENV TERRAFORM_VERSION=0.7.2
+
 RUN apk add --update git bash
-RUN go get github.com/tools/godep
-RUN go get github.com/hashicorp/terraform
-
-WORKDIR $GOPATH/src/github.com/hashicorp/terraform
-
-RUN godep restore -v .../.
 
 ENV TF_DEV=true
 
-RUN /bin/bash scripts/build.sh
+WORKDIR $GOPATH/src/github.com/hashicorp/terraform
+RUN git clone https://github.com/hashicorp/terraform.git ./ && \
+    git checkout v${TERRAFORM_VERSION} && \
+    /bin/bash scripts/build.sh
 
 WORKDIR $GOPATH
-ENTRYPOINT ["bin/terraform"]
+ENTRYPOINT ["terraform"]
