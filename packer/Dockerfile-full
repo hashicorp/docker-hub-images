@@ -1,15 +1,13 @@
 FROM golang:alpine
-MAINTAINER "Tim Fall <tim@hashicorp.com>"
+MAINTAINER "Matt Hooker <mhooker@hashicorp.com>"
+
+ENV PACKER_DEV=1
 
 RUN apk add --update git bash
 RUN go get github.com/mitchellh/gox
-RUN go get github.com/tools/godep
 RUN go get github.com/mitchellh/packer
-RUN go get github.com/kardianos/govendor
 
 WORKDIR $GOPATH/src/github.com/mitchellh/packer
-
-RUN govendor fetch packer
 
 RUN /bin/bash scripts/build.sh
 
