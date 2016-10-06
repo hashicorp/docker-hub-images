@@ -1,7 +1,7 @@
 FROM golang:alpine
 MAINTAINER "HashiCorp Terraform Team <terraform@hashicorp.com>"
 
-ENV TERRAFORM_VERSION=0.7.2
+ENV TERRAFORM_VERSION=0.7.4
 
 RUN apk add --update git bash
 
