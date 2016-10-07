@@ -4,7 +4,7 @@ MAINTAINER "HashiCorp Terraform Team <terraform@hashicorp.com>"
 ENV TERRAFORM_VERSION=0.7.5
 ENV TERRAFORM_SHA256SUM=7def82015b3a9a1bab13b4548e4c8d4ac960322a815cff7d9ebf76ef74a4cb34
 
-RUN apk add --update git curl && \
+RUN apk add --update git curl bash && \
     curl https://releases.hashicorp.com/terraform/${TERRAFORM_VERSION}/terraform_${TERRAFORM_VERSION}_linux_amd64.zip > terraform_${TERRAFORM_VERSION}_linux_amd64.zip && \
     echo "${TERRAFORM_SHA256SUM}  terraform_${TERRAFORM_VERSION}_linux_amd64.zip" > terraform_${TERRAFORM_VERSION}_SHA256SUMS && \
     sha256sum -cs terraform_${TERRAFORM_VERSION}_SHA256SUMS && \
