@@ -1,8 +1,8 @@
 FROM alpine:latest
 MAINTAINER "Tim Fall <tim@hashicorp.com>"
 
-ENV PACKER_VERSION=0.10.1
-ENV PACKER_SHA256SUM=eadd33bc0f8fa42034059fc1cda5f43ed6f540746e767480f0706ebed49b45e5
+ENV PACKER_VERSION=0.11.0
+ENV PACKER_SHA256SUM=318ffffa13763eb6f29f28f572656356dc3dbf8d54c01ffddd1c5e2f08593adb
 
 RUN apk add --update git bash wget
 
