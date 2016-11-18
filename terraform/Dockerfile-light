@@ -1,8 +1,8 @@
 FROM alpine:latest
 MAINTAINER "HashiCorp Terraform Team <terraform@hashicorp.com>"
 
-ENV TERRAFORM_VERSION=0.7.10
-ENV TERRAFORM_SHA256SUM=a6da76d6228349855f7c503b769fb231e6b1009add5e5b2586ecb7624e9ecf15
+ENV TERRAFORM_VERSION=0.7.11
+ENV TERRAFORM_SHA256SUM=1a1aa419d614ea38d93cc751e00874ace9414184c75e66480384c464e8a634db
 
 RUN apk add --update git curl && \
     curl https://releases.hashicorp.com/terraform/${TERRAFORM_VERSION}/terraform_${TERRAFORM_VERSION}_linux_amd64.zip > terraform_${TERRAFORM_VERSION}_linux_amd64.zip && \
