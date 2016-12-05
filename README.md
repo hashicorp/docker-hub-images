@@ -11,3 +11,6 @@ packer (full)
 
 packer (light)
 [![](https://badge.imagelayers.io/timfallmk/packer-auto:light.svg)](https://imagelayers.io/?images=timfallmk/packer-auto:light 'Get your own badge on imagelayers.io')
+
+packer (resource)
+[![](https://badge.imagelayers.io/timfallmk/packer-auto:resource.svg)](https://imagelayers.io/?images=timfallmk/packer-auto:resource 'Get your own badge on imagelayers.io')
