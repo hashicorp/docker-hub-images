@@ -1,8 +1,8 @@
 FROM alpine:latest
-MAINTAINER "Tim Fall <tim@hashicorp.com>"
+MAINTAINER "Matt Hooker <mhooker@hashicorp.com>"
 
-ENV PACKER_VERSION=0.12.0
-ENV PACKER_SHA256SUM=ce6362d527ba697e40b8c90a98d2034b7749e2357fa238b08536aed44f037073
+ENV PACKER_VERSION=0.12.1
+ENV PACKER_SHA256SUM=456e6245ea95705191a64e0556d7a7ecb7db570745b3b4b2e1ebf92924e9ef95
 
 RUN apk add --update git bash wget
 
