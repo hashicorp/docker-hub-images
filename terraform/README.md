@@ -11,10 +11,19 @@ You can use this version with the following:
 docker run -i -t hashicorp/terraform:light <command>
 ```
 
+For example:
+```shell
+docker run -i -t hashicorp/terraform:light plan terraform_example
+```
+
 ##### `full`
 The `full` version of this container contains all of the source code found in the parent [repository](https://github.com/hashicorp/terraform). Using [Google's official `golang` image](https://hub.docker.com/_/golang/) as a base, this container will copy the source from the `master` branch, build the binary, and expose it for running. Since the build is done on [Docker Hub](https://hub.docker.com/r/hashicorp), the container is ready for use. Because all build artifacts are included, it should be quite a bit larger than the `light` image. This version of the container is useful for development or debugging.
 
 You can use this version with the following:
 ```shell
 docker run -i -t hashicorp/terraform:full <command>
+```
+For example:
+```shell
+docker run -i -t hashicorp/terraform:full plan terraform_example
 ```
