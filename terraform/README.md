@@ -18,3 +18,11 @@ You can use this version with the following:
 ```shell
 docker run -i -t hashicorp/terraform:full <command>
 ```
+
+##### `resource`
+The `resource` version of this container is a clone of the full version without entry point.
+
+You can use this version with the following:
+```shell
+docker run -i -t hashicorp/terraform:resource terraform <command> && terraform <command>
+```

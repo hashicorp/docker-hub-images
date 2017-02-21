@@ -1,0 +1,5 @@
+FROM hashicorp/terraform:full
+
+RUN apk add --update openssh
+
+ENTRYPOINT []
