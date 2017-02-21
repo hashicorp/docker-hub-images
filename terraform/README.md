@@ -13,7 +13,7 @@ docker run -i -t hashicorp/terraform:light <command>
 
 For example:
 ```shell
-docker run -i -t hashicorp/terraform:light plan terraform_example
+docker run -i -t hashicorp/terraform:light plan main.tf
 ```
 
 ##### `full`
@@ -25,5 +25,5 @@ docker run -i -t hashicorp/terraform:full <command>
 ```
 For example:
 ```shell
-docker run -i -t hashicorp/terraform:full plan terraform_example
+docker run -i -t hashicorp/terraform:full plan main.tf
 ```
