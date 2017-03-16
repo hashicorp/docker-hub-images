@@ -3,7 +3,7 @@ MAINTAINER "HashiCorp Terraform Team <terraform@hashicorp.com>"
 
 ENV TERRAFORM_VERSION=0.9.0
 
-RUN apk add --update git bash
+RUN apk add --no-cache --update git openssh-client bash
 
 ENV TF_DEV=true
 
