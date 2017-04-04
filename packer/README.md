@@ -28,7 +28,7 @@ docker run -i -t hashicorp/packer:light <command>
 ##### `full`
 
 The `full` version of this container contains all of the source code found in
-the parent [repository](https://github.com/mitchellh/packer). Using [Google's
+the parent [repository](https://github.com/hashicorp/packer). Using [Google's
 official `golang` image](https://hub.docker.com/_/golang/) as a base, this
 container will copy the source from the `master` branch, build the binary, and
 expose it for running. Since the build is done on [Docker
