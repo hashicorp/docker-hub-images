@@ -20,11 +20,11 @@ if [[ $version != $dockerfile_version ]]; then
     exit 1
 fi
 
-#echo "Building docker images for terraform ${version}..."
-#docker build -f "${base}/Dockerfile-full" -t hashicorp/terraform:full .
-#docker build -f "${base}/Dockerfile-light" -t hashicorp/terraform:light .
-#docker tag hashicorp/terraform:light hashicorp/terraform:${version}
-#docker tag hashicorp/terraform:light hashicorp/terraform:latest
+echo "Building docker images for terraform ${version}..."
+docker build -f "${base}/Dockerfile-full" -t hashicorp/terraform:full .
+docker build -f "${base}/Dockerfile-light" -t hashicorp/terraform:light .
+docker tag hashicorp/terraform:light hashicorp/terraform:${version}
+docker tag hashicorp/terraform:light hashicorp/terraform:latest
 
 echo "Uploading docker images for terraform ${version}..."
 docker push hashicorp/terraform:${version}
