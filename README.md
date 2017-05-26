@@ -11,3 +11,9 @@ packer (full)
 
 packer (light)
 [![](https://badge.imagelayers.io/timfallmk/packer-auto:light.svg)](https://imagelayers.io/?images=timfallmk/packer-auto:light 'Get your own badge on imagelayers.io')
+
+vault (full)
+[![](https://badge.imagelayers.io/hashicorp/vault:latest.svg)](https://imagelayers.io/?images=hashicorp/vault:latest 'Get your own badge on imagelayers.io')
+
+vault (light)
+[![](https://badge.imagelayers.io/hashicorp/vault:light.svg)](https://imagelayers.io/?images=hashicorp/vault:light 'Get your own badge on imagelayers.io')

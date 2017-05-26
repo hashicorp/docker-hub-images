@@ -1,0 +1,17 @@
+FROM alpine:latest
+MAINTAINER "Tim Fall <tim@hashicorp.com>"
+
+ENV VAULT_VERSION=0.5.2
+ENV VAULT_SHA256SUM=7517b21d2c709e661914fbae1f6bf3622d9347b0fe9fc3334d78a01d1e1b4ec2
+
+RUN apk add --update git bash wget
+
+ADD https://releases.hashicorp.com/vault/${VAULT_VERSION}/vault_${VAULT_VERSION}_linux_amd64.zip ./
+ADD https://releases.hashicorp.com/vault/${VAULT_VERSION}/vault_${VAULT_VERSION}_SHA256SUMS ./
+
+RUN sed -i '/vault_${VAULT_VERSION}_linux_amd64.zip/!d' vault_${VAULT_VERSION}_SHA256SUMS
+RUN sha256sum -cs vault_${VAULT_VERSION}_SHA256SUMS
+RUN unzip vault_${VAULT_VERSION}_linux_amd64.zip
+RUN rm -f vault_${VAULT_VERSION}_linux_amd64.zip
+
+ENTRYPOINT ["/vault"]
