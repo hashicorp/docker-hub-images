@@ -1,0 +1,19 @@
+FROM alpine:latest
+MAINTAINER "Tim Fall <tim@hashicorp.com>"
+
+ENV CONSUL_VERSION=0.6.4
+ENV CONSUL_SHA256SUM=abdf0e1856292468e2c9971420d73b805e93888e006c76324ae39416edcf0627
+
+RUN apk add --update git bash wget
+
+ADD https://releases.hashicorp.com/consul/${CONSUL_VERSION}/consul_${CONSUL_VERSION}_linux_amd64.zip ./
+ADD https://releases.hashicorp.com/consul/${CONSUL_VERSION}/consul_${CONSUL_VERSION}_SHA256SUMS ./
+
+RUN sed -i '/consul_${CONSUL_VERSION}_linux_amd64.zip/!d' consul_${CONSUL_VERSION}_SHA256SUMS
+RUN sha256sum -cs consul_${CONSUL_VERSION}_SHA256SUMS
+RUN unzip consul_${CONSUL_VERSION}_linux_amd64.zip
+RUN rm -f consul_${CONSUL_VERSION}_linux_amd64.zip
+
+EXPOSE 8300 8301 8301/udp 8302 8302/udp 8400 53 53/udp
+
+ENTRYPOINT ["/consul"]
