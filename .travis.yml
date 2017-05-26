@@ -1,0 +1,14 @@
+sudo: required
+
+services:
+  - docker
+
+before_install:
+  - make
+
+script:
+  - make version
+  - make test
+
+notifications:
+  email: false
