@@ -1,9 +1,9 @@
 FROM golang:alpine
-MAINTAINER "HashiCorp Terraform Team <terraform@hashicorp.com>"
+LABEL maintainer "HashiCorp Terraform Team <terraform@hashicorp.com>"
 
 ENV TERRAFORM_VERSION=0.10.0
 
-RUN apk add --update git bash openssh
+RUN apk add --no-cache git bash openssh
 
 ENV TF_DEV=true
 ENV TF_RELEASE=true

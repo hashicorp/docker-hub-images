@@ -1,9 +1,9 @@
 FROM golang:alpine
-MAINTAINER "Matt Hooker <mhooker@hashicorp.com>"
+LABEL maintainer "Matt Hooker <mhooker@hashicorp.com>"
 
 ENV PACKER_DEV=1
 
-RUN apk add --update git bash openssl
+RUN apk add --no-cache git bash openssl
 RUN go get github.com/mitchellh/gox
 RUN go get github.com/hashicorp/packer
 

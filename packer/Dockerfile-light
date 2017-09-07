@@ -1,10 +1,10 @@
 FROM alpine:latest
-MAINTAINER "Matt Hooker <mhooker@hashicorp.com>"
+LABEL maintainer "Matt Hooker <mhooker@hashicorp.com>"
 
 ENV PACKER_VERSION=1.0.3
 ENV PACKER_SHA256SUM=0e10169ef9cf3fd55dcc9dc213b9995170f7712e8a162ca2f5109d62bfbe7529
 
-RUN apk add --update git bash wget openssl
+RUN apk add --no-cache git bash wget openssl
 
 ADD https://releases.hashicorp.com/packer/${PACKER_VERSION}/packer_${PACKER_VERSION}_linux_amd64.zip ./
 ADD https://releases.hashicorp.com/packer/${PACKER_VERSION}/packer_${PACKER_VERSION}_SHA256SUMS ./
