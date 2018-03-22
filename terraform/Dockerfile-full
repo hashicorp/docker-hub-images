@@ -3,7 +3,7 @@ MAINTAINER "HashiCorp Terraform Team <terraform@hashicorp.com>"
 
 ENV TERRAFORM_VERSION=0.10.0
 
-RUN apk add --update git bash openssh
+RUN apk add --update git bash openssh make curl curl-dev
 
 ENV TF_DEV=true
 ENV TF_RELEASE=true
