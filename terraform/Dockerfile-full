@@ -9,8 +9,7 @@ ENV TF_DEV=true
 ENV TF_RELEASE=true
 
 WORKDIR $GOPATH/src/github.com/hashicorp/terraform
-RUN git clone https://github.com/hashicorp/terraform.git ./ && \
-    git checkout v${TERRAFORM_VERSION} && \
+RUN git clone https://github.com/hashicorp/terraform.git --depth 1 --branch v${TERRAFORM_VERSION} --single-branch ./ && \
     /bin/bash scripts/build.sh
 
 WORKDIR $GOPATH
