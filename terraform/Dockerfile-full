@@ -1,5 +1,5 @@
 FROM golang:alpine
-MAINTAINER "HashiCorp Terraform Team <terraform@hashicorp.com>"
+LABEL maintainer="HashiCorp Terraform Team <terraform@hashicorp.com>"
 
 ENV TERRAFORM_VERSION=0.10.0
 
