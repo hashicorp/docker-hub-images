@@ -6,13 +6,12 @@ ENV PACKER_SHA256SUM=22ef75c1f5a8878acb9aed4cb4ba71a147fc4f6be4110577e0a457e359a
 
 RUN apk add --no-cache git bash wget openssl ca-certificates
 
-ADD https://releases.hashicorp.com/packer/${PACKER_VERSION}/packer_${PACKER_VERSION}_linux_amd64.zip ./
-ADD https://releases.hashicorp.com/packer/${PACKER_VERSION}/packer_${PACKER_VERSION}_SHA256SUMS ./
-
-RUN sed -i '/.*linux_amd64.zip/!d' packer_${PACKER_VERSION}_SHA256SUMS
-RUN sha256sum -cs packer_${PACKER_VERSION}_SHA256SUMS
-RUN unzip packer_${PACKER_VERSION}_linux_amd64.zip -d /bin
-RUN rm -f packer_${PACKER_VERSION}_linux_amd64.zip
+RUN wget https://releases.hashicorp.com/packer/${PACKER_VERSION}/packer_${PACKER_VERSION}_linux_amd64.zip && \
+    wget https://releases.hashicorp.com/packer/${PACKER_VERSION}/packer_${PACKER_VERSION}_SHA256SUMS && \
+    sed -i '/.*linux_amd64.zip/!d' packer_${PACKER_VERSION}_SHA256SUMS && \
+    sha256sum -cs packer_${PACKER_VERSION}_SHA256SUMS && \
+    unzip packer_${PACKER_VERSION}_linux_amd64.zip -d /bin && \
+    rm -f packer_${PACKER_VERSION}_linux_amd64.zip
 
 FROM alpine:latest
 COPY --from=0 /bin/packer /bin/packer
