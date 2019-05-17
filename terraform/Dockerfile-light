@@ -1,0 +1,17 @@
+FROM alpine:latest
+MAINTAINER "The Terraform Team <terraform@hashicorp.com>"
+
+ENV TERRAFORM_VERSION=0.11.14
+ENV TERRAFORM_SHA256SUM=9b9a4492738c69077b079e595f5b2a9ef1bc4e8fb5596610f69a6f322a8af8dd
+
+RUN apk add --update git bash wget openssl
+
+ADD https://releases.hashicorp.com/terraform/${TERRAFORM_VERSION}/terraform_${TERRAFORM_VERSION}_linux_amd64.zip ./
+ADD https://releases.hashicorp.com/terraform/${TERRAFORM_VERSION}/terraform_${TERRAFORM_VERSION}_SHA256SUMS ./
+
+RUN sed -i '/.*linux_amd64.zip/!d' terraform_${TERRAFORM_VERSION}_SHA256SUMS
+RUN sha256sum -cs terraform_${TERRAFORM_VERSION}_SHA256SUMS
+RUN unzip terraform_${TERRAFORM_VERSION}_linux_amd64.zip -d /bin
+RUN rm -f terraform_${TERRAFORM_VERSION}_linux_amd64.zip
+
+ENTRYPOINT ["/bin/terraform"]

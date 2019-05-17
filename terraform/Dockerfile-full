@@ -1,0 +1,15 @@
+FROM golang:alpine
+MAINTAINER "The Terraform Team <terraform@hashicorp.com>"
+
+ENV TERRAFORM_DEV=1
+
+RUN apk add --update git bash openssl
+RUN go get github.com/mitchellh/gox
+RUN go get github.com/hashicorp/terraform
+
+WORKDIR $GOPATH/src/github.com/hashicorp/terraform
+
+RUN /bin/bash scripts/build.sh
+
+WORKDIR $GOPATH
+ENTRYPOINT ["bin/terraform"]

@@ -6,3 +6,7 @@ packer (full)
 
 packer (light)
 [![](https://badge.imagelayers.io/hashicorp/packer-auto:light.svg)](https://imagelayers.io/?images=hashicorp/packer-auto:light 'Get your own badge on imagelayers.io')
+
+terraform (light)
+
+terraform (full)
