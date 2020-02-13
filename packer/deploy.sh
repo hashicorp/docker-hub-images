@@ -29,9 +29,11 @@ docker build -f "${base}/Dockerfile-full" -t hashicorp/packer:full .
 docker build -f "${base}/Dockerfile-light" -t hashicorp/packer:light .
 docker tag hashicorp/packer:light hashicorp/packer:${version}
 docker tag hashicorp/packer:light hashicorp/packer:latest
+docker tag hashicorp/packer:full hashicorp/packer:full-${version}
 
 echo "Uploading docker images for packer ${version}..."
 docker push hashicorp/packer:${version}
+docker push hashicorp/packer:full-${version}
 docker push hashicorp/packer:latest
 docker push hashicorp/packer:light
 docker push hashicorp/packer:full
