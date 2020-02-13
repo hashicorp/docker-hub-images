@@ -20,6 +20,10 @@ if [[ $version != $dockerfile_version ]]; then
     exit 1
 fi
 
+echo "Updating alpine releases"
+docker pull alpine
+docker pull golang:alpine
+
 echo "Building docker images for packer ${version}..."
 docker build -f "${base}/Dockerfile-full" -t hashicorp/packer:full .
 docker build -f "${base}/Dockerfile-light" -t hashicorp/packer:light .
