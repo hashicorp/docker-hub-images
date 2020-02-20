@@ -13,7 +13,4 @@ RUN wget -q https://releases.hashicorp.com/packer/${PACKER_VERSION}/packer_${PAC
     unzip packer_${PACKER_VERSION}_linux_amd64.zip -d /bin && \
     rm -f packer_${PACKER_VERSION}_linux_amd64.zip
 
-FROM alpine:latest
-COPY --from=0 /bin/packer /bin/packer
-
 ENTRYPOINT ["/bin/packer"]
