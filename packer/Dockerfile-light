@@ -2,7 +2,7 @@ FROM alpine:latest
 MAINTAINER "The Packer Team <packer@hashicorp.com>"
 
 ENV PACKER_VERSION=0.0.0
-ENV PACKER_SHA256SUM=41ab8debdc3600551fdc174f7810fa60c646477ae0545deee17c546418e924af
+ENV PACKER_SHA256SUM=800014d2966ae4ec250b5c54a506b35ac3dc6c0a41307457aa21d820026ba22e
 
 RUN apk add --update git bash wget openssl
 
