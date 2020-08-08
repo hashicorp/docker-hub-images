@@ -1,13 +1,20 @@
 FROM alpine:latest
+RUN apk add rpm2cpio
+RUN wget -q "https://s3.amazonaws.com/session-manager-downloads/plugin/latest/linux_64bit/session-manager-plugin.rpm" -O "/tmp/session-manager-plugin.rpm" \
+ && cd /tmp && rpm2cpio /tmp/session-manager-plugin.rpm | cpio  -i ./usr/local/sessionmanagerplugin/bin/session-manager-plugin -v -d \
+ && mv ./usr/local/sessionmanagerplugin/bin/session-manager-plugin /usr/local/bin && rm /tmp/session-manager-plugin.rpm
+
+FROM alpine:latest
 MAINTAINER "The Packer Team <packer@hashicorp.com>"
 
 ENV PACKER_VERSION=1.6.1
 ENV PACKER_SHA256SUM=8dcf97610e8c3907c23e25201dce20b498e1939e89878dec01de6975733c7729
 
-RUN apk add --update git bash wget openssl
+RUN apk add --update git bash wget openssl libc6-compat
 
 ADD https://releases.hashicorp.com/packer/${PACKER_VERSION}/packer_${PACKER_VERSION}_linux_amd64.zip ./
 ADD https://releases.hashicorp.com/packer/${PACKER_VERSION}/packer_${PACKER_VERSION}_SHA256SUMS ./
+COPY --from=0 /usr/local/bin/session-manager-plugin /usr/local/bin
 
 RUN sed -i '/.*linux_amd64.zip/!d' packer_${PACKER_VERSION}_SHA256SUMS
 RUN sha256sum -cs packer_${PACKER_VERSION}_SHA256SUMS
