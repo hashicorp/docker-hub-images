@@ -1,8 +1,8 @@
 FROM alpine:latest
 LABEL maintainer="The Packer Team <packer@hashicorp.com>"
 
-ENV PACKER_VERSION=1.6.3
-ENV PACKER_SHA256SUM=294ae56dccec9da24120b92c22e4c4d0453f1a9d077799611ead2adacceade3e
+ENV PACKER_VERSION=1.6.4
+ENV PACKER_SHA256SUM=a20ec68e9eb6e1d6016481003f705babbecc28e234f8434f3a35f675cb200ea8
 
 RUN apk add --update git bash wget openssl
 
