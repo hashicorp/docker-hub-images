@@ -3,7 +3,7 @@ LABEL maintainer="The Packer Team <packer@hashicorp.com>"
 
 ENV PACKER_DEV=1
 
-RUN apk add --no-cache git bash openssl ca-certificates
+RUN apk add --no-cache git bash openssl ca-certificates xorriso
 RUN go get github.com/mitchellh/gox
 RUN go get github.com/hashicorp/packer
 

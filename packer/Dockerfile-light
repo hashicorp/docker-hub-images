@@ -4,7 +4,7 @@ LABEL maintainer="The Packer Team <packer@hashicorp.com>"
 ENV PACKER_VERSION=1.6.4
 ENV PACKER_SHA256SUM=a20ec68e9eb6e1d6016481003f705babbecc28e234f8434f3a35f675cb200ea8
 
-RUN apk add --update git bash wget openssl
+RUN apk add --update git bash wget openssl xorriso
 
 ADD https://releases.hashicorp.com/packer/${PACKER_VERSION}/packer_${PACKER_VERSION}_linux_amd64.zip ./
 ADD https://releases.hashicorp.com/packer/${PACKER_VERSION}/packer_${PACKER_VERSION}_SHA256SUMS ./
