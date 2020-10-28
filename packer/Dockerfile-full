@@ -1,4 +1,4 @@
-FROM golang:alpine
+FROM docker.mirror.hashicorp.services/golang:alpine
 LABEL maintainer="The Packer Team <packer@hashicorp.com>"
 
 ENV PACKER_DEV=1
