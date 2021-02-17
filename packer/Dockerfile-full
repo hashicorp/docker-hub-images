@@ -4,7 +4,7 @@ LABEL maintainer="The Packer Team <packer@hashicorp.com>"
 ENV PACKER_DEV=1
 
 RUN apk add --no-cache git bash openssl ca-certificates
-RUN git clone https://github.com/mitchellh/gox $GOPATH/src/github.com/mitchellh/gox
+RUN go install github.com/mitchellh/gox
 RUN git clone https://github.com/hashicorp/packer $GOPATH/src/github.com/hashicorp/packer
 
 WORKDIR $GOPATH/src/github.com/hashicorp/packer
