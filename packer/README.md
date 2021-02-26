@@ -79,7 +79,7 @@ docker run \
     build template.json
 ```
 
-For the [manual installation](https://www.packer.io/docs/plugins#installing-plugins) of third-party plugins, we recommended that plugin binaries be placed a sub-directory under the working directory and adding `-e PACKER_PLUGIN_PATH=/workspace/<subdirectory_plugin_path>` to the command above.
+For the [manual installation](https://www.packer.io/docs/plugins#installing-plugins) of third-party plugins, we recommended that plugin binaries are placed under a sub-directory under the working directory. Add `-e PACKER_PLUGIN_PATH=/workspace/<subdirectory_plugin_path>` to the command above to tell Packer where the plugins are.
 
 To pass a var file (`var.json`) to the build command:
 
