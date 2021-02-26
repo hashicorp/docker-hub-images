@@ -22,7 +22,7 @@ the binary from a container. The `latest` tag also points to this version.
 
 You can use this version with the following:
 ```shell
-docker run -i -t <args> hashicorp/packer:light <command>
+docker run <args> hashicorp/packer:light <command>
 ```
 
 ##### `full`
@@ -39,27 +39,54 @@ debugging.
 
 You can use this version with the following:
 ```shell
-docker run -i -t <args> hashicorp/packer:full <command>
+docker run <args> hashicorp/packer:full <command>
 ```
 
 #### Running a build:
 
-The easiest way to run a command that references a file is to bind mount the
-file on the docker image:
+The easiest way to run a command that references a configuration with one or more template files, is to mount a volume for the local workspace.
 
+Running `packer init`
 ```shell
-docker run -it \
-	--mount type=bind,source=/absolute/path/to/template.json,target=/mnt/template.json \
-	hashicorp/packer:latest build /mnt/template.json
+docker run \
+    -v `pwd`:/workspace -w /workspace \
+    -e PACKER_PLUGIN_PATH=/workspace/.packer.d/plugins \
+    hashicorp/packer:latest \
+    init .
 ```
 
-If you have several files you need Packer to have access to, you'll want to
-bind mount a directory containing all of those files:
+~> **Note**: packer init is available from Packer v1.7.0 and later
+
+The command will mount the working directory (`pwd`) to `workspace`, which is the working directory (`-w`) inside the container. 
+Any plugin installed with `packer init` will be installed at the `PACKER_PLUGIN_PATH`. The `PACKER_PLUGIN_PATH` must be set to a path inside the volume mount so that plugins can become available at `packer build`. 
+
+Running `packer build`
+```shell
+docker run \
+    -v `pwd`:/workspace -w /workspace \
+    -e PACKER_PLUGIN_PATH=/workspace/.packer.d/plugins \
+    hashicorp/packer:latest \
+    build .
+```
+##### Building old-legacy JSON templates
+
+For old-legacy JSON, the build command must specify the template file(s).
 
 ```shell
-docker run -it \
-    --mount type=bind,source=/absolute/path/to/test_docker_packer,target=/mnt/test_docker_packer \
-    hashicorp/packer:latest build \
-    --var-file /mnt/test_docker_packer/vars.json \
-    /mnt/test_docker_packer/template.json
+docker run \
+    -v `pwd`:/workspace -w /workspace \
+    hashicorp/packer:latest \
+    build template.json
 ```
+
+If plugins are necessary, we recommended to have the binaries inside a folder in the working directory and pass `-e PACKER_PLUGIN_PATH=/workspace/<wdir_plugin_path>` to the command above.
+
+To pass a var file (`var.json`) to the build command:
+
+```shell
+docker run \
+    -v `pwd`:/workspace -w /workspace \
+    hashicorp/packer:latest \
+    build --var-file var.json template.json
+```
+`var.json` is expected to be inside the local working directory (`pwd`) and in the container's workspace mount.
