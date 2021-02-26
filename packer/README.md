@@ -58,7 +58,7 @@ docker run \
 ~> **Note**: packer init is available from Packer v1.7.0 and later
 
 The command will mount the working directory (`pwd`) to `workspace`, which is the working directory (`-w`) inside the container. 
-Any plugin installed with `packer init` will be installed at the `PACKER_PLUGIN_PATH`. The `PACKER_PLUGIN_PATH` must be set to a path inside the volume mount so that plugins can become available at `packer build`. 
+Any plugin installed with `packer init` will be installed under the directory specified under the `PACKER_PLUGIN_PATH` environment variable. `PACKER_PLUGIN_PATH` must be set to a path inside the volume mount so that plugins can become available at `packer build`. 
 
 Running `packer build`
 ```shell
