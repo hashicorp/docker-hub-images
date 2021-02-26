@@ -79,7 +79,7 @@ docker run \
     build template.json
 ```
 
-If plugins are necessary, we recommended to have the binaries inside a folder in the working directory and pass `-e PACKER_PLUGIN_PATH=/workspace/<wdir_plugin_path>` to the command above.
+For the [manual installation](https://www.packer.io/docs/plugins#installing-plugins) of third-party plugins, we recommended that plugin binaries be placed a sub-directory under the working directory and adding `-e PACKER_PLUGIN_PATH=/workspace/<subdirectory_plugin_path>` to the command above.
 
 To pass a var file (`var.json`) to the build command:
 
