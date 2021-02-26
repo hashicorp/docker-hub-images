@@ -1,4 +1,4 @@
-FROM alpine:latest
+FROM docker.mirror.hashicorp.services/alpine:latest
 LABEL maintainer="The Packer Team <packer@hashicorp.com>"
 
 ENV PACKER_VERSION=1.7.0
