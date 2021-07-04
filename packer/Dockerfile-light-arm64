@@ -1,0 +1,17 @@
+FROM docker.mirror.hashicorp.services/alpine:latest
+LABEL maintainer="The Packer Team <packer@hashicorp.com>"
+
+ENV PACKER_VERSION=1.7.3
+ENV PACKER_SHA256SUM=1a8719f0797e9e45abd98d2eb38099b09e5566ec212453052d2f21facc990c73
+
+RUN apk add --update git bash wget openssl
+
+ADD https://releases.hashicorp.com/packer/${PACKER_VERSION}/packer_${PACKER_VERSION}_linux_arm64.zip ./
+ADD https://releases.hashicorp.com/packer/${PACKER_VERSION}/packer_${PACKER_VERSION}_SHA256SUMS ./
+
+RUN sed -i '/.*linux_arm64.zip/!d' packer_${PACKER_VERSION}_SHA256SUMS
+RUN sha256sum -cs packer_${PACKER_VERSION}_SHA256SUMS
+RUN unzip packer_${PACKER_VERSION}_linux_arm64.zip -d /bin
+RUN rm -f packer_${PACKER_VERSION}_linux_arm64.zip
+
+ENTRYPOINT ["/bin/packer"]
