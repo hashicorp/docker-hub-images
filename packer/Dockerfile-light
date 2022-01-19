@@ -1,8 +1,8 @@
 FROM docker.mirror.hashicorp.services/alpine:latest
 LABEL maintainer="The Packer Team <packer@hashicorp.com>"
 
-ENV PACKER_VERSION=1.7.8
-ENV PACKER_SHA256SUM=8a94b84542d21b8785847f4cccc8a6da4c7be5e16d4b1a2d0a5f7ec5532faec0
+ENV PACKER_VERSION=1.7.9
+ENV PACKER_SHA256SUM=f89ed2e5f2becd391c7f0a9e51b79f3ea8a47fc4b486f1f54c3087e291d3f111
 
 RUN apk add --update git bash wget openssl
 
